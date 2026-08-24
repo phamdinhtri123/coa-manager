@@ -170,8 +170,6 @@ class COAM_Helpers {
 			'show_description'       => 1,
 			'show_total'             => 1,
 			'show_search'            => 1,
-			'show_category_filter'   => 1,
-			'show_laboratory_filter' => 1,
 			'total_reports_label'    => __( 'Total COA Reports', 'coa-manager' ),
 			'desktop_columns'        => 3,
 			'tablet_columns'         => 2,

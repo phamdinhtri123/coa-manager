@@ -9,11 +9,17 @@
 }
 
 .coam-header {
+	display: grid;
+	gap: 22px;
+	grid-template-columns: 1fr;
+	margin: 0 0 28px;
+}
+
+.coam-header-tools {
 	align-items: center;
 	display: grid;
-	gap: 24px;
-	grid-template-columns: minmax(160px, 1fr) minmax(260px, 1.6fr) minmax(220px, 1fr);
-	margin: 0 0 28px;
+	gap: 20px;
+	grid-template-columns: minmax(160px, 1fr) minmax(260px, 1fr);
 }
 
 .coam-total span,
@@ -39,6 +45,7 @@
 	font-size: 32px;
 	line-height: 1.15;
 	margin: 0 0 8px;
+	font-weight: 700;
 }
 
 .coam-heading p {
@@ -46,8 +53,7 @@
 	margin: 0;
 }
 
-.coam-search,
-.coam-filter {
+.coam-search {
 	background: #fff;
 	border: 1px solid #c8d3e2;
 	border-radius: 8px;
@@ -58,16 +64,10 @@
 	width: 100%;
 }
 
-.coam-filters {
-	display: flex;
-	flex-wrap: wrap;
-	gap: 12px;
-	justify-content: flex-end;
-	margin: 0 0 20px;
-}
-
-.coam-filter {
-	max-width: 240px;
+.coam-search-wrap {
+	justify-self: end;
+	max-width: 360px;
+	width: 100%;
 }
 
 .coam-grid {
@@ -227,13 +227,8 @@
 }
 
 @media (max-width: 1024px) {
-	.coam-header {
+	.coam-header-tools {
 		grid-template-columns: 1fr 1fr;
-	}
-
-	.coam-heading {
-		grid-column: 1 / -1;
-		order: -1;
 	}
 
 	.coam-grid {
@@ -243,6 +238,7 @@
 
 @media (max-width: 640px) {
 	.coam-header,
+	.coam-header-tools,
 	.coam-grid,
 	.coam-actions {
 		grid-template-columns: 1fr;
@@ -252,11 +248,8 @@
 		text-align: center;
 	}
 
-	.coam-filters {
-		justify-content: stretch;
-	}
-
-	.coam-filter {
+	.coam-search-wrap {
+		justify-self: stretch;
 		max-width: none;
 	}
 

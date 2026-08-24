@@ -32,7 +32,6 @@ class COAM_Renderer {
 		?>
 		<div class="coam-manager" style="<?php echo esc_attr( $style ); ?>">
 			<?php echo self::render_header( $args ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
-			<?php echo self::render_filters( $records, $args ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
 			<div class="coam-grid" data-coam-grid>
 				<?php foreach ( $records as $post_id ) : ?>
 					<?php echo self::render_card( $post_id ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
@@ -86,13 +85,11 @@ class COAM_Renderer {
 		$batch      = COAM_Helpers::get_meta( $post_id, 'batch_lot' );
 		$laboratory = COAM_Helpers::get_meta( $post_id, 'laboratory' );
 		$date       = COAM_Helpers::format_date( COAM_Helpers::get_meta( $post_id, 'tested_date' ) );
-		$terms      = wp_get_post_terms( $post_id, COAM_Helpers::TAXONOMY, array( 'fields' => 'slugs' ) );
-		$terms      = is_wp_error( $terms ) ? array() : $terms;
 		$search     = strtolower( trim( $product . ' ' . $batch ) );
 
 		ob_start();
 		?>
-		<article class="coam-card" data-coam-card data-coam-search="<?php echo esc_attr( $search ); ?>" data-coam-laboratory="<?php echo esc_attr( sanitize_title( $laboratory ) ); ?>" data-coam-category="<?php echo esc_attr( implode( ' ', $terms ) ); ?>">
+		<article class="coam-card" data-coam-card data-coam-search="<?php echo esc_attr( $search ); ?>">
 			<div class="coam-card-top">
 				<span class="coam-verified"><span aria-hidden="true">&#10003;</span> <?php esc_html_e( 'VERIFIED COA', 'coa-manager' ); ?></span>
 				<span class="coam-purity"><?php echo esc_html( $purity ); ?>% <?php esc_html_e( 'purity', 'coa-manager' ); ?></span>
@@ -123,7 +120,7 @@ class COAM_Renderer {
 	 * @return array<string,mixed>
 	 */
 	private static function normalize_args( $args, $settings ) {
-		$bools = array( 'show_title', 'show_description', 'show_total', 'show_search', 'show_category_filter', 'show_laboratory_filter' );
+		$bools = array( 'show_title', 'show_description', 'show_total', 'show_search' );
 		foreach ( $bools as $key ) {
 			if ( isset( $args[ $key ] ) ) {
 				$args[ $key ] = self::to_bool( $args[ $key ] );
@@ -140,8 +137,6 @@ class COAM_Renderer {
 		$args['mobile_columns']      = self::allowed_int( $args['mobile_columns'] ?? $settings['mobile_columns'], array( 1, 2 ), 1 );
 		$args['primary_color']       = sanitize_hex_color( $settings['primary_color'] ) ?: '#123AA8';
 		$args['primary_hover_color'] = sanitize_hex_color( $settings['primary_hover_color'] ) ?: '#0B2D86';
-		$args['category']            = isset( $args['category'] ) ? sanitize_title( $args['category'] ) : '';
-		$args['laboratory']          = isset( $args['laboratory'] ) ? sanitize_text_field( $args['laboratory'] ) : '';
 		$args['limit']               = isset( $args['limit'] ) ? max( 1, min( 100, absint( $args['limit'] ) ) ) : 24;
 		$args['paged']               = isset( $_GET['coam_page'] ) ? max( 1, absint( $_GET['coam_page'] ) ) : 1;
 
@@ -168,26 +163,6 @@ class COAM_Renderer {
 			'update_post_meta_cache' => true,
 			'update_post_term_cache' => true,
 		);
-
-		if ( $args['category'] ) {
-			$query_args['tax_query'] = array(
-				array(
-					'taxonomy' => COAM_Helpers::TAXONOMY,
-					'field'    => 'slug',
-					'terms'    => $args['category'],
-				),
-			);
-		}
-
-		if ( $args['laboratory'] ) {
-			$query_args['meta_query'] = array(
-				array(
-					'key'     => COAM_Helpers::meta_keys()['laboratory'],
-					'value'   => $args['laboratory'],
-					'compare' => 'LIKE',
-				),
-			);
-		}
 
 		return new WP_Query( $query_args );
 	}
@@ -238,12 +213,6 @@ class COAM_Renderer {
 		ob_start();
 		?>
 		<header class="coam-header">
-			<?php if ( $args['show_total'] ) : ?>
-				<div class="coam-total">
-					<span><?php echo esc_html( $args['total_reports_label'] ); ?></span>
-					<strong><?php echo esc_html( $count ); ?> <?php echo esc_html( 1 === $count ? __( 'Report', 'coa-manager' ) : __( 'Reports', 'coa-manager' ) ); ?></strong>
-				</div>
-			<?php endif; ?>
 			<div class="coam-heading">
 				<?php if ( $args['show_title'] ) : ?>
 					<h2><?php echo esc_html( $args['page_title'] ); ?></h2>
@@ -252,57 +221,22 @@ class COAM_Renderer {
 					<p><?php echo esc_html( $args['page_description'] ); ?></p>
 				<?php endif; ?>
 			</div>
-			<?php if ( $args['show_search'] ) : ?>
-				<div class="coam-search-wrap">
-					<input type="search" class="coam-search" data-coam-search-input placeholder="<?php esc_attr_e( 'Search COA by product or batch/lot...', 'coa-manager' ); ?>" />
+			<?php if ( $args['show_total'] || $args['show_search'] ) : ?>
+				<div class="coam-header-tools">
+					<?php if ( $args['show_total'] ) : ?>
+						<div class="coam-total">
+							<span><?php echo esc_html( $args['total_reports_label'] ); ?></span>
+							<strong><?php echo esc_html( $count ); ?> <?php echo esc_html( 1 === $count ? __( 'Report', 'coa-manager' ) : __( 'Reports', 'coa-manager' ) ); ?></strong>
+						</div>
+					<?php endif; ?>
+					<?php if ( $args['show_search'] ) : ?>
+						<div class="coam-search-wrap">
+							<input type="search" class="coam-search" data-coam-search-input placeholder="<?php esc_attr_e( 'Search COA by product or batch/lot...', 'coa-manager' ); ?>" />
+						</div>
+					<?php endif; ?>
 				</div>
 			<?php endif; ?>
 		</header>
-		<?php
-		return (string) ob_get_clean();
-	}
-
-	/**
-	 * Filters.
-	 *
-	 * @param array<int>          $records Post IDs.
-	 * @param array<string,mixed> $args Args.
-	 * @return string
-	 */
-	private static function render_filters( $records, $args ) {
-		if ( ! $args['show_category_filter'] && ! $args['show_laboratory_filter'] ) {
-			return '';
-		}
-
-		$labs = array();
-		foreach ( $records as $post_id ) {
-			$lab = COAM_Helpers::get_meta( $post_id, 'laboratory' );
-			if ( $lab ) {
-				$labs[ sanitize_title( $lab ) ] = $lab;
-			}
-		}
-
-		$terms = get_terms( array( 'taxonomy' => COAM_Helpers::TAXONOMY, 'hide_empty' => true ) );
-		ob_start();
-		?>
-		<div class="coam-filters">
-			<?php if ( $args['show_category_filter'] && ! is_wp_error( $terms ) && $terms ) : ?>
-				<select class="coam-filter" data-coam-category-filter>
-					<option value=""><?php esc_html_e( 'All Categories', 'coa-manager' ); ?></option>
-					<?php foreach ( $terms as $term ) : ?>
-						<option value="<?php echo esc_attr( $term->slug ); ?>"><?php echo esc_html( $term->name ); ?></option>
-					<?php endforeach; ?>
-				</select>
-			<?php endif; ?>
-			<?php if ( $args['show_laboratory_filter'] && $labs ) : ?>
-				<select class="coam-filter" data-coam-laboratory-filter>
-					<option value=""><?php esc_html_e( 'All Laboratories', 'coa-manager' ); ?></option>
-					<?php foreach ( $labs as $slug => $lab ) : ?>
-						<option value="<?php echo esc_attr( $slug ); ?>"><?php echo esc_html( $lab ); ?></option>
-					<?php endforeach; ?>
-				</select>
-			<?php endif; ?>
-		</div>
 		<?php
 		return (string) ob_get_clean();
 	}

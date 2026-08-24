@@ -69,8 +69,6 @@ class COAM_Settings {
 		$output['show_description']       = empty( $input['show_description'] ) ? 0 : 1;
 		$output['show_total']             = empty( $input['show_total'] ) ? 0 : 1;
 		$output['show_search']            = empty( $input['show_search'] ) ? 0 : 1;
-		$output['show_category_filter']   = empty( $input['show_category_filter'] ) ? 0 : 1;
-		$output['show_laboratory_filter'] = empty( $input['show_laboratory_filter'] ) ? 0 : 1;
 		$output['auto_show_product_coa']  = empty( $input['auto_show_product_coa'] ) ? 0 : 1;
 		$output['delete_on_uninstall']    = empty( $input['delete_on_uninstall'] ) ? 0 : 1;
 		$output['desktop_columns']        = in_array( absint( $input['desktop_columns'] ?? 3 ), array( 2, 3, 4 ), true ) ? absint( $input['desktop_columns'] ) : 3;
@@ -107,8 +105,6 @@ class COAM_Settings {
 					<?php self::checkbox_row( 'show_description', __( 'Show Description', 'coa-manager' ), $settings['show_description'] ); ?>
 					<?php self::checkbox_row( 'show_total', __( 'Show Total Reports', 'coa-manager' ), $settings['show_total'] ); ?>
 					<?php self::checkbox_row( 'show_search', __( 'Show Search', 'coa-manager' ), $settings['show_search'] ); ?>
-					<?php self::checkbox_row( 'show_category_filter', __( 'Show Category Filter', 'coa-manager' ), $settings['show_category_filter'] ); ?>
-					<?php self::checkbox_row( 'show_laboratory_filter', __( 'Show Laboratory Filter', 'coa-manager' ), $settings['show_laboratory_filter'] ); ?>
 				</table>
 
 				<h2><?php esc_html_e( 'Display', 'coa-manager' ); ?></h2>

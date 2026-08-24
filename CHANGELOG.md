@@ -1,5 +1,11 @@
 # Changelog
 
+## 1.0.1
+- Added WooCommerce feature compatibility declarations.
+- Separated the frontend heading from the total/search header tools.
+- Removed frontend category and laboratory filter UI, styles, and scripts.
+- Kept frontend search focused on product name and batch/lot.
+
 ## 1.0.0
 - Initial release.
 - Added COA management.

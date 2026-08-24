@@ -14,7 +14,7 @@ COA Manager is a WordPress plugin for managing and displaying Certificate of Ana
 - `coa_category` taxonomy
 - Required COA fields: product name, strength, purity, batch/lot, laboratory, tested date, and PDF/URL
 - Verified COA display is automatic for valid published records
-- Frontend manager shortcode with search, category filter, laboratory filter, total report counter, and responsive CSS Grid columns
+- Frontend manager shortcode with search, total report counter, and responsive CSS Grid columns
 - Product latest COA shortcode and PHP API
 - Optional automatic WooCommerce product page integration
 - Safe uninstall behavior, preserving data by default
@@ -24,7 +24,7 @@ COA Manager is a WordPress plugin for managing and displaying Certificate of Ana
 
 ```text
 [coa_manager]
-[coa_manager category="peptides" laboratory="janoshik" limit="12"]
+[coa_manager limit="12"]
 [coa_manager show_title="no" desktop_columns="4" tablet_columns="2" mobile_columns="1"]
 [coa_product_latest]
 [coa_product_latest display="card"]

@@ -30,8 +30,6 @@ class COAM_Shortcodes {
 	public static function manager( $atts ) {
 		$atts = shortcode_atts(
 			array(
-				'category'            => '',
-				'laboratory'          => '',
 				'limit'               => 24,
 				'show_title'          => null,
 				'show_description'    => null,
