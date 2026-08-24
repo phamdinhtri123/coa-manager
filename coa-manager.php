@@ -3,7 +3,7 @@
  * Plugin Name: COA Manager
  * Plugin URI: https://github.com/your-org/coa-manager
  * Description: Manage and display Certificate of Analysis records with WooCommerce integration.
- * Version: 1.0.5
+ * Version: 1.0.6
  * Requires at least: 6.5
  * Requires PHP: 8.0
  * Author: COA Manager
@@ -19,7 +19,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-define( 'COAM_VERSION', '1.0.5' );
+define( 'COAM_VERSION', '1.0.6' );
 define( 'COAM_FILE', __FILE__ );
 define( 'COAM_PATH', plugin_dir_path( __FILE__ ) );
 define( 'COAM_URL', plugin_dir_url( __FILE__ ) );

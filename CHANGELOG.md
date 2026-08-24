@@ -1,5 +1,8 @@
 # Changelog
 
+## 1.0.6
+- Updated frontend search input and button border radius.
+
 ## 1.0.5
 - Refined frontend search input spacing.
 - Improved mobile heading and card text spacing.

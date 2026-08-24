@@ -58,7 +58,7 @@
 .coam-search {
 	background: #fff;
 	border: 1px solid #c8d3e2 !important;
-	border-radius: 8px !important;
+	border-radius: 30px !important;
 	color: #031433;
 	font: inherit;
 	padding: 4px 20px !important;
@@ -81,7 +81,7 @@
 .coam-search-button {
 	background: var(--coam-primary);
 	border: 1px solid var(--coam-primary);
-	border-radius: 8px;
+	border-radius: 30px;
 	color: #fff;
 	cursor: pointer;
 	font: inherit;
