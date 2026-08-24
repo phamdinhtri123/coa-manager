@@ -1,5 +1,10 @@
 # Changelog
 
+## 1.0.4
+- Refined frontend COA card styling.
+- Updated search input and button sizing.
+- Replaced the verified badge checkmark with an inline icon.
+
 ## 1.0.3
 - Added a Search button next to the COA search input.
 - Updated frontend search styling for desktop and mobile layouts.
