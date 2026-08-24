@@ -17,7 +17,8 @@ class COAM_Updater {
 	 * Initialize updater.
 	 */
 	public static function init() {
-		$repository_url = apply_filters( 'coam_github_repository_url', defined( 'COAM_GITHUB_REPOSITORY_URL' ) ? COAM_GITHUB_REPOSITORY_URL : '' );
+		$default_repository_url = 'https://github.com/phamdinhtri123/coa-manager';
+		$repository_url         = apply_filters( 'coam_github_repository_url', defined( 'COAM_GITHUB_REPOSITORY_URL' ) ? COAM_GITHUB_REPOSITORY_URL : $default_repository_url );
 		if ( '' === $repository_url ) {
 			return;
 		}

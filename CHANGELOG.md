@@ -1,5 +1,8 @@
 # Changelog
 
+## 1.0.2
+- Configured the default public GitHub repository URL for update checks.
+
 ## 1.0.1
 - Added WooCommerce feature compatibility declarations.
 - Separated the frontend heading from the total/search header tools.
