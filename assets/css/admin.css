@@ -1,0 +1,48 @@
+.coam-admin-grid {
+	display: grid;
+	gap: 12px 18px;
+	grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.coam-field label,
+.coam-file-source strong {
+	display: block;
+	font-weight: 600;
+	margin-bottom: 6px;
+}
+
+.coam-file-source {
+	border-top: 1px solid #dcdcde;
+	margin-top: 16px;
+	padding-top: 16px;
+}
+
+.coam-file-source label {
+	margin-right: 16px;
+}
+
+.coam-media-row {
+	align-items: center;
+	display: grid;
+	gap: 8px;
+	grid-template-columns: minmax(0, 1fr) auto auto;
+	margin: 10px 0;
+}
+
+.coam-status-ok {
+	color: #04703d;
+	font-weight: 700;
+}
+
+.coam-status-bad,
+.required {
+	color: #b32d2e;
+	font-weight: 700;
+}
+
+@media (max-width: 782px) {
+	.coam-admin-grid,
+	.coam-media-row {
+		grid-template-columns: 1fr;
+	}
+}
