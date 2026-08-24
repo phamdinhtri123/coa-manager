@@ -1,5 +1,9 @@
 # Changelog
 
+## 1.0.5
+- Refined frontend search input spacing.
+- Improved mobile heading and card text spacing.
+
 ## 1.0.4
 - Refined frontend COA card styling.
 - Updated search input and button sizing.

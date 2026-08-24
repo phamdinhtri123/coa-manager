@@ -61,10 +61,10 @@
 	border-radius: 8px !important;
 	color: #031433;
 	font: inherit;
-	padding: 4px 14px !important;
+	padding: 4px 20px !important;
 	height: 44px;
 	width: 100% !important;
-	font-size: 14px;
+	font-size: 14px !important;
 	font-weight: 500;
 	outline: none;
 }
@@ -296,10 +296,6 @@
 		padding: 20px;
 	}
 
-	.coam-card-top,
-	.coam-meta div {
-		align-items: flex-start;
-	}
 
 	.coam-meta div {
 		grid-template-columns: 1fr;
@@ -308,5 +304,15 @@
 
 	.coam-meta strong {
 		text-align: left;
+	}
+	.coam-heading h2 {
+		font-size: 26px;
+	}
+	.coam-heading p {
+		font-size: 14px;
+		font-weight: 500;
+	}
+	.coam-card-title p {
+		margin-bottom: 16px;
 	}
 }
