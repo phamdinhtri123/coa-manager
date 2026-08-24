@@ -30,4 +30,10 @@
 		}
 	});
 
+	document.addEventListener('click', function (event) {
+		if (event.target.matches('[data-coam-search-button]')) {
+			filterManager(event.target.closest('.coam-manager'));
+		}
+	});
+
 }());

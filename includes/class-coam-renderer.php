@@ -232,6 +232,7 @@ class COAM_Renderer {
 					<?php if ( $args['show_search'] ) : ?>
 						<div class="coam-search-wrap">
 							<input type="search" class="coam-search" data-coam-search-input placeholder="<?php esc_attr_e( 'Search COA by product or batch/lot...', 'coa-manager' ); ?>" />
+							<button type="button" class="coam-search-button" data-coam-search-button><?php esc_html_e( 'Search', 'coa-manager' ); ?></button>
 						</div>
 					<?php endif; ?>
 				</div>

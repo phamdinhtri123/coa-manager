@@ -26,6 +26,8 @@
 .coam-card p,
 .coam-meta span {
 	color: #53627a;
+	font-size: 14px;
+	font-weight: 500;
 }
 
 .coam-total strong {
@@ -55,19 +57,44 @@
 
 .coam-search {
 	background: #fff;
-	border: 1px solid #c8d3e2;
-	border-radius: 8px;
+	border: 1px solid #c8d3e2 !important;
+	border-radius: 8px !important;
 	color: #031433;
 	font: inherit;
 	min-height: 44px;
-	padding: 10px 14px;
-	width: 100%;
+	padding: 10px 14px !important;
+	width: 100% !important;
+	font-size: 14px;
+	font-weight: 500;
+	outline: none;
 }
 
 .coam-search-wrap {
+	display: grid;
+	gap: 10px;
+	grid-template-columns: minmax(0, 1fr) auto;
 	justify-self: end;
-	max-width: 360px;
+	max-width: 460px;
 	width: 100%;
+}
+
+.coam-search-button {
+	background: var(--coam-primary);
+	border: 1px solid var(--coam-primary);
+	border-radius: 8px;
+	color: #fff;
+	cursor: pointer;
+	font: inherit;
+	font-weight: 800;
+	min-height: 44px;
+	padding: 10px 18px;
+}
+
+.coam-search-button:hover,
+.coam-search-button:focus {
+	background: var(--coam-primary-hover);
+	border-color: var(--coam-primary-hover);
+	color: #fff;
 }
 
 .coam-grid {
@@ -237,6 +264,7 @@
 }
 
 @media (max-width: 640px) {
+
 	.coam-header,
 	.coam-header-tools,
 	.coam-grid,
@@ -249,6 +277,7 @@
 	}
 
 	.coam-search-wrap {
+		grid-template-columns: 1fr;
 		justify-self: stretch;
 		max-width: none;
 	}

@@ -1,5 +1,9 @@
 # Changelog
 
+## 1.0.3
+- Added a Search button next to the COA search input.
+- Updated frontend search styling for desktop and mobile layouts.
+
 ## 1.0.2
 - Configured the default public GitHub repository URL for update checks.
 
